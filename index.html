@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Daily Stoic</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+    <!-- <script src='main.js'></script> -->
+</head>
+<body>
+    
+    <p id="stoic-date">October 5</p>
+    <h1 id="stoic-quote">Stoic QUotr</h1>
+    <script>
+        const API_URL = "https://raw.githubusercontent.com/jaamiiss/daily-stoic/main/data/stoic.json";
+
+        async function getDailyStoic() {
+            const response = await fetch(API_URL);
+            const dataa = await response.json();
+            
+            const d = new Date();
+            var montha = d.getMonth() + 1;
+            var daya = d.getDate();
+            var year = d.getFullYear();
+            //console.log(toMonthName(montha) + " " + daya + ", " + year);
+            
+            var stoicDate = montha + " " + daya;
+            //get all data 
+            dataa.forEach(obj => {
+                Object.entries(obj).forEach(([key, value]) => {
+                    //console.log(`${key}: ${value}`);
+                });
+            });
+
+            dataa.forEach(obj => {
+                Object.entries(obj).forEach(([date, stoicDate]) => {
+                    console.log(`${date}: ${stoicDate}`);
+                });
+            });
+            //const { quotes } = data;
+            //console.log(data[0].date);
+            //console.log(data);
+            // console.log(date);
+
+            //document.getElementById('stoic-date').textContent = quotes;
+            //document.getElementById('stoic-quote').textContent = quotes;
+
+            // for (var i=0; i<data.length; i++) {
+            //     for (var key in data[i]) {
+            //         for (var j= 0; j<data[i][key].length; j++) {
+            //             console.log(data[i][key][j])
+            //             }
+            //     }
+            // }
+
+        }
+
+        function toMonthName(monthNumber) {
+            const cdate = new Date();
+            cdate.setMonth(monthNumber - 1);
+
+            return cdate.toLocaleString('en-US', {
+                month: 'long',
+            });
+        }
+        //console.log(toMonthName(10));
+        //console.log("stoic test");
+
+        const stoicu = getDailyStoic();
+        
+      
+       //console.log(stoicu);
+    </script>
+
+</body>
+</html>
